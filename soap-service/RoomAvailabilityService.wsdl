@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<definitions name="RoomAvailabilityService"
+    targetNamespace="http://www.example.org/RoomAvailabilityService/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://www.example.org/RoomAvailabilityService/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="checkAvailabilityRequest">
+        <part name="roomType" type="xsd:string"/>
+        <part name="startDate" type="xsd:string"/>
+        <part name="endDate" type="xsd:string"/>
+    </message>
+
+    <message name="checkAvailabilityResponse">
+        <part name="rooms" type="xsd:string"/>
+    </message>
+
+    <portType name="RoomAvailabilityPortType">
+        <operation name="checkAvailability">
+            <input message="tns:checkAvailabilityRequest"/>
+            <output message="tns:checkAvailabilityResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="RoomAvailabilityBinding" type="tns:RoomAvailabilityPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="checkAvailability">
+            <soap:operation soapAction="http://www.example.org/RoomAvailabilityService/checkAvailability"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="RoomAvailabilityService">
+        <port name="RoomAvailabilityPort" binding="tns:RoomAvailabilityBinding">
+            <soap:address location="http://localhost:8000/RoomAvailabilityService"/>
+        </port>
+    </service>
+</definitions>

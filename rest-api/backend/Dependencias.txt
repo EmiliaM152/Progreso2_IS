@@ -1,0 +1,6 @@
+#Necesarios:
+npm install express mssql dotenv
+npm install bcrypt
+npm install jsonwebtoken bcryptjs
+npm install cors
+npm install express-validator
